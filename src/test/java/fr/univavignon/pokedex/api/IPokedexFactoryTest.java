@@ -1,4 +1,5 @@
 package fr.univavignon.pokedex.api;
+import java.util.*;
 
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
@@ -27,5 +28,4 @@ public class IPokedexFactoryTest {
         
         assertNotNull("Le pokedex créé ne devrait pas être null", pokedex);
     }
-    
 }
