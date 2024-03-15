@@ -33,7 +33,6 @@ workflows:
               only:
                 - master
 
-workflows:
   upload-to-codecov:
     jobs:
       - checkout 
