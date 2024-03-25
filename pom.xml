@@ -36,8 +36,6 @@
             <version>3.3.1</version>
             <type>maven-plugin</type>
         </dependency>
-
-
     </dependencies>
 
     <build>
@@ -122,6 +120,19 @@
                         <goals>
                             <goal>check</goal>
                         </goals>
+                    </execution>
+                    <execution>
+                        <id>generate-checkstyle-report</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <failsOnError>false</failsOnError>
+                            <consoleOutput>false</consoleOutput>
+                            <configLocation>checkstyle.xml</configLocation>
+                            <outputFile>${project.build.directory}/checkstyle-report.xml</outputFile>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
