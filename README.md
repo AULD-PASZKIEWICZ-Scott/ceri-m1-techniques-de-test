@@ -4,6 +4,8 @@ AULD PASZKIEWICZ Scott    M1 IA classique
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/AULD-PASZKIEWICZ-Scott/ceri-m1-techniques-de-test/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/AULD-PASZKIEWICZ-Scott/ceri-m1-techniques-de-test/tree/master)
 [![codecov](https://codecov.io/gh/AULD-PASZKIEWICZ-Scott/ceri-m1-techniques-de-test/graph/badge.svg?token=4WL8W6UMJ7)](https://codecov.io/gh/AULD-PASZKIEWICZ-Scott/ceri-m1-techniques-de-test)
+[![Checkstyle](https://img.shields.io/badge/checkstyle-passing-brightgreen)]()
+
 
 ## Introduction
 

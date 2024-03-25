@@ -1,5 +1,4 @@
 package fr.univavignon.pokedex.api;
-import java.util.*;
 
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
