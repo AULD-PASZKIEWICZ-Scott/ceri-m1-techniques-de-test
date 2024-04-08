@@ -62,10 +62,3 @@ workflows:
             branches:
               only:
                 - master
-      - docs-build:
-          requires:
-            - build
-      - docs-deploy:
-          requires:
-            - build
-            - docs-build
