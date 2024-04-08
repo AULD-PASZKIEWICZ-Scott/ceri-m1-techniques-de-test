@@ -7,49 +7,59 @@
     <artifactId>my_project</artifactId>
     <version>1.0.0</version>
 
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencies>
+        <!-- JUnit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Mockito -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>2.7.5</version>
+            <version>3.11.2</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Apache Commons Collections -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
             <version>4.4</version>
         </dependency>
+
+        <!-- Checkstyle -->
         <dependency>
             <groupId>com.puppycrawl.tools</groupId>
             <artifactId>checkstyle</artifactId>
             <version>10.14.1</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-checkstyle-plugin</artifactId>
-            <version>3.3.1</version>
-            <type>maven-plugin</type>
-        </dependency>
     </dependencies>
 
     <build>
-    	<testSourceDirectory>src/test/java</testSourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
         <plugins>
+            <!-- Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.12.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
             </plugin>
+
+            <!-- Surefire Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -59,60 +69,41 @@
                         <include>**/*Test.java</include>
                     </includes>
                 </configuration>
-        	</plugin>
-        	<plugin>
-        		<groupId>org.jacoco</groupId>
-        		<artifactId>jacoco-maven-plugin</artifactId>
-        		<version>0.8.11</version>
-                    <executions>
-                        <execution>
-                            <id>generate-report</id>
-                            <phase>test</phase>
-                            <goals>
-                                <goal>report</goal>
-                            </goals>
-                            <configuration>
-                                <dataFile>target/jacoco.exec</dataFile>
-                                <outputDirectory>target/jacoco-report</outputDirectory>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>default-prepare-agent</id>
-                            <goals>
-                                <goal>prepare-agent</goal>
-                            </goals>
-                        </execution>
+            </plugin>
 
-                        <execution>
-        				    <id>report</id>
-        				    <phase>prepare-package</phase>
-        				    <goals>
-        					    <goal>report</goal>
-        				    </goals>
-                        </execution>
-                        <execution>
-                            <id>post-unit-test</id>
-                            <phase>test</phase>
-                            <goals>
-                                <goal>report</goal>
-                            </goals>
-                            <configuration>
-                                <dataFile>target/jacoco.exec</dataFile>
-                                <outputDirectory>target/jacoco-report</outputDirectory>
-                            </configuration>
-                      </execution>
-        		</executions>
-        	</plugin>
+            <!-- JaCoCo Plugin -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.7</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <excludes>
+                                <exclude>sun/**</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <!-- Checkstyle Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.3.1</version>
-                <configuration>
-                    <configLocation>checkstyle.xml</configLocation>
-                    <consoleOutput>true</consoleOutput>
-                    <failsOnError>true</failsOnError>
-                    <linkXRef>false</linkXRef>
-                </configuration>
+                <version>3.1.2</version>
                 <executions>
                     <execution>
                         <id>validate</id>
@@ -135,20 +126,23 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.3</version>
+                <configuration>
+                    <configLocation>checkstyle.xml</configLocation>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <linkXRef>false</linkXRef>
+                </configuration>
             </plugin>
         </plugins>
     </build>
+
     <reporting>
         <plugins>
+            <!-- Checkstyle Report Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.3.1</version>
+                <version>3.1.2</version>
                 <reportSets>
                     <reportSet>
                         <reports>
@@ -160,4 +154,3 @@
         </plugins>
     </reporting>
 </project>
-
