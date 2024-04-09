@@ -11,11 +11,15 @@ public class IPokemonTrainerFactoryTest {
 
     private IPokemonTrainerFactory trainerFactory;
     private IPokedexFactory pokedexFactory;
+    private IPokemonMetadataProvider metadataProvider;
+    private IPokemonFactory pokemonFactory;
 
     @Before
     public void setUp() {
         trainerFactory = mock(IPokemonTrainerFactory.class);
         pokedexFactory = mock(IPokedexFactory.class);
+        metadataProvider = mock(IPokemonMetadataProvider.class);
+        pokemonFactory = mock(IPokemonFactory.class);
     }
 
     @Test
@@ -24,9 +28,11 @@ public class IPokemonTrainerFactoryTest {
         Team team = Team.MYSTIC;
         
         IPokemonMetadataProvider pokemonMetadataProvider = mock(IPokemonMetadataProvider.class);
-        IPokemonFactory pokemonFactory = mock(IPokemonFactory.class);
+        //IPokemonFactory pokemonFactory = mock(IPokemonFactory.class);
         IPokedex pokedex = mock(IPokedex.class);
-        
+        when(pokedexFactory.createPokedex(metadataProvider, pokemonFactory)).thenReturn(pokedex);
+
+
         when(pokedexFactory.createPokedex(pokemonMetadataProvider, pokemonFactory)).thenReturn(pokedex);
 
         PokemonTrainer expectedTrainer = new PokemonTrainer(name, team, pokedex);
