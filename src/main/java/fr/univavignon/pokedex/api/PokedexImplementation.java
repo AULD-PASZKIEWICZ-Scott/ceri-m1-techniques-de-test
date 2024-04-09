@@ -11,7 +11,8 @@ public class PokedexImplementation implements IPokedex {
     private IPokemonMetadataProvider metadataProvider;
     private IPokemonFactory pokemonFactory;
 
-    public PokedexImplementation(final IPokemonMetadataProvider metadataProvider, final IPokemonFactory pokemonFactory) {
+    public PokedexImplementation(final IPokemonMetadataProvider metadataProvider,
+                                 final IPokemonFactory pokemonFactory) {
         this.metadataProvider = metadataProvider;
         this.pokemonFactory = pokemonFactory;
     }
@@ -26,9 +27,21 @@ public class PokedexImplementation implements IPokedex {
         return pokemonFactory.createPokemon(index, cp, hp, dust, candy);
     }
 
-    @Override
     public int addPokemon(final Pokemon pokemon) {
-        return pokemon != null ? pokemonList.size() + (pokemonList.add(pokemon) ? 1 : 0) - 1 : -1;
+        if (pokemon != null) {
+            int currentSize = pokemonList.size();
+            boolean isAdded = pokemonList.add(pokemon);
+
+            int newIndex;
+            if (isAdded) {
+                newIndex = currentSize - 1;
+            } else {
+                newIndex = -1;
+            }
+            return newIndex;
+        } else {
+            return -1;
+        }
     }
 
     @Override
@@ -42,7 +55,7 @@ public class PokedexImplementation implements IPokedex {
     }
 
     private Pokemon throwInvalidPokemonIdException() throws PokedexException {
-        throw new PokedexException("Invalid pokemon ID!");
+        throw new PokedexException("you use invalid id pokemon");
     }
 
     @Override
